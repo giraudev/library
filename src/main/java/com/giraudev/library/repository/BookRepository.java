@@ -1,4 +1,4 @@
-package com.giraudev.library.Repository;
+package com.giraudev.library.repository;
 
 import com.giraudev.library.domain.Book;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -22,9 +22,8 @@ public class Book {
     private String isbn;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @Column(name = "LANGUAGE")
-    private Languages language;
+    private String language;
 
     @Column(name = "CREATED_TIME")
     private LocalDateTime createdTime;
@@ -32,7 +31,7 @@ public class Book {
     @Deprecated
     Book(){}
 
-    public Book(String title, String description, String isbn, Languages language) {
+    public Book(String title, String description, String isbn, String language) {
         this.title = title;
         this.description = description;
         this.isbn = isbn;
@@ -52,7 +51,7 @@ public class Book {
         return isbn;
     }
 
-    public Languages getLanguage() {
+    public String getLanguage() {
         return language;
     }
 

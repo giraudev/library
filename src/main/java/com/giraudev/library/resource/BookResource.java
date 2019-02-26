@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/library")
 public class BookResource {
@@ -16,20 +18,20 @@ public class BookResource {
 
     @PostMapping(path = "/book")
     public ResponseEntity<Void>postBook(@RequestBody BookDTO dto){
-        service.postBook(dto);
+        service.post(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/book/{id}")
-    public ResponseEntity<BookDTO>getBook(@PathVariable("id") Long id){
-        BookDTO dto = service.getBook(id);
+    public ResponseEntity<BookDTO>getBook(@PathVariable("id") Long id)throws Exception{
+        BookDTO dto = service.get(id);
         return new ResponseEntity<>( dto, HttpStatus.OK);    }
 
 
-//    @GetMapping(path = "/book")
-//    public ResponseEntity<BookDTO>getAllBooks(@PathVariable("id") Long id){
-//        BookDTO dto;
-//        return new ResponseEntity<>( dto, HttpStatus.OK);
-//    }
+    @GetMapping(path = "/book")
+    public ResponseEntity <List<BookDTO>>getAllBooks() throws Exception{
+        List<BookDTO> dtos = service.getAll();
+        return new ResponseEntity<>( dtos, HttpStatus.OK);
+   }
 }
 

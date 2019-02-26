@@ -1,7 +1,5 @@
 package com.giraudev.library.dto;
 
-import com.giraudev.library.domain.Languages;
-
 public class BookDTO {
 
     private Long id;
@@ -12,19 +10,19 @@ public class BookDTO {
 
     private String isbn;
 
-    private Languages language;
+    private String language;
 
     @Deprecated
     BookDTO(){}
 
-    public BookDTO(String title, String description, String isbn, Languages language) {
+    public BookDTO(String title, String description, String isbn, String language) {
         this.title = title;
         this.description = description;
         this.isbn = isbn;
         this.language = language;
     }
 
-    public BookDTO(Long id, String title, String description, String isbn, Languages language) {
+    public BookDTO(Long id, String title, String description, String isbn, String language) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -44,7 +42,7 @@ public class BookDTO {
         return isbn;
     }
 
-    public Languages getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
