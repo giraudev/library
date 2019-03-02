@@ -9,7 +9,7 @@ public class BookResponseURLDTO {
     private List<BookDTO> books;
 
     @Deprecated
-            BookResponseURLDTO(){}
+    BookResponseURLDTO(){}
 
     public BookResponseURLDTO(Long numberBooks, List<BookDTO> books) {
         this.numberBooks = numberBooks;

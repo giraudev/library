@@ -3,6 +3,7 @@ package com.giraudev.library.service;
 import com.giraudev.library.converter.BookConverter;
 import com.giraudev.library.domain.Book;
 import com.giraudev.library.dto.BookDTO;
+import com.giraudev.library.dto.BookPostResponse;
 import com.giraudev.library.exception.BookNotFoundException;
 import com.giraudev.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,10 @@ public class BookService {
         return converter.toDto(book);
     }
 
-    public String post(BookDTO dto) {
-        Book book = converter.fromRequestDTO(dto);
-        repository.save(book);
-        return book.getId().toString();
+    public BookPostResponse post(BookDTO dto) {
+        Book book = repository.findByIsbn(dto.getIsbn())
+                .orElseGet(() -> this.repository.save(this.converter.fromRequestDTO(dto)));
+        return converter.toDto(book.getId());
     }
 
     public List<BookDTO> getAll()throws Exception{

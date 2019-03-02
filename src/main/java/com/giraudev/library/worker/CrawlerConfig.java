@@ -4,7 +4,6 @@ import com.giraudev.library.domain.Book;
 import com.giraudev.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 @Profile("default")
 @Component
-public class CrawlerConfig implements ApplicationRunner {
+public class CrawlerConfig {
 
     @Autowired
     private BookRepository repository;
@@ -20,7 +19,6 @@ public class CrawlerConfig implements ApplicationRunner {
     @Autowired
     private CrawlerWorker crawler;
 
-    @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
         long total = repository.count();
 

@@ -1,6 +1,7 @@
 package com.giraudev.library.resource;
 
 import com.giraudev.library.dto.BookDTO;
+import com.giraudev.library.dto.BookPostResponse;
 import com.giraudev.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +18,9 @@ public class BookResource {
     BookService service;
 
     @PostMapping(path = "/book")
-    public ResponseEntity<Void>postBook(@RequestBody BookDTO dto){
-        service.post(dto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<BookPostResponse>postBook(@RequestBody BookDTO dto){
+        BookPostResponse bookPostResponse =service.post(dto);
+        return new ResponseEntity<>(bookPostResponse,HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/book/{id}")
@@ -30,8 +31,7 @@ public class BookResource {
 
     @GetMapping(path = "/book")
     public ResponseEntity <List<BookDTO>>getAllBooks() throws Exception{
-        List<BookDTO> dtos = service.getAll();
-        return new ResponseEntity<>( dtos, HttpStatus.OK);
+        return new ResponseEntity<>( service.getAll(), HttpStatus.OK);
    }
 }
 
